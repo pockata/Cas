@@ -1,0 +1,30 @@
+{
+  "name": "Cas",
+  "version": "0.1.0",
+  "description": "CAnvas Simplified - A toolkit to help HTML5 canvas app development",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "keywords": [
+    "cas",
+    "canvas",
+    "html5",
+    "node",
+    "nodejs",
+    "wrapper",
+    "library",
+    "helper",
+    "tool",
+    "toolkit"
+  ],
+  "author": "Rosen Stoyanov <me@pockata.org> (http://pockata.org/)",
+  "license": "MIT",
+  "dependencies": {
+    "debug": "^1.0.4"
+  },
+  "devDependencies": {
+    "chai": "^1.9.1",
+    "mocha": "^1.21.4"
+  }
+}
