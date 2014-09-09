@@ -1,6 +1,7 @@
 /* global describe, it */
 var expect = require('chai').expect;
 var Shape  = require('../lib/shape');
+var Layer  = require('../lib/layer');
 
 describe('Shape object', function () {
 
@@ -29,6 +30,34 @@ describe('Shape object', function () {
         it('should attach getters/setters for properties', function () {
             expect(shape.x).to.equal(10);
         });
+    });
+
+    describe('Layer integration', function () {
+        it('should attach to layer', function () {
+            var shape = new Shape();
+            var layer = new Layer();
+            expect(layer.objects.length).to.equal(0);
+            shape.attachTo(layer);
+            expect(layer.objects.length).to.equal(1);
+        });
+
+        it('should attach to layer and detach from the current one', function () {
+            var shape  = new Shape();
+            var layer  = new Layer();
+            var layer2 = new Layer();
+
+            expect(layer.objects.length).to.equal(0);
+
+            shape.attachTo(layer);
+
+            expect(layer.objects.length).to.equal(1);
+
+            shape.attachTo(layer2);
+
+            expect(layer.objects.length).to.equal(0);
+            expect(layer2.objects.length).to.equal(1);
+        });
+
     });
 
     describe('Animations', function () {
