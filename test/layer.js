@@ -45,7 +45,7 @@ describe('Layers API', function () {
 
         it('should move a layer to the bottom', function () {
 
-            Layer.deleteAll();
+            Layer.removeAll();
 
             var layer1 = new Layer();
             var layer2 = new Layer();
@@ -66,7 +66,7 @@ describe('Layers API', function () {
 
         it('should move a layer to the top', function () {
 
-            Layer.deleteAll();
+            Layer.removeAll();
 
             var layer1 = new Layer();
             var layer2 = new Layer();
@@ -84,7 +84,7 @@ describe('Layers API', function () {
     describe('#moveToIndex', function () {
         it('should move a layer to a specified index', function () {
 
-            Layer.deleteAll();
+            Layer.removeAll();
 
             var layer1 = new Layer();
             var layer2 = new Layer();
