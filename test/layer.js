@@ -1,8 +1,5 @@
 /* global describe, it, before */
 
-// Trigger private api exposure
-process.env.NODE_ENV = 'test';
-
 var expect = require('chai').expect;
 var Shape  = require('../lib/shape');
 var Layer  = require('../lib/layer');
@@ -10,23 +7,21 @@ var Layer  = require('../lib/layer');
 
 describe('Layers API', function () {
 
-    var ctx = {}; // in place of a real canvas 2D context
-
     describe('Layer.create', function () {
 
         var layer;
 
         before(function () {
-            layer = Layer.create(ctx);
+            layer = new Layer();
         });
 
         it('should return a valid Layer instance', function () {
-            expect(layer).to.be.an.instanceof(Layer.LayerClass);
+            expect(layer).to.be.an.instanceof(Layer);
         });
 
         it('should add a "layer" instance to the layer map', function () {
             var firstLayer = Layer.getLayerByIndex(0);
-            expect(firstLayer).to.be.an.instanceof(Layer.LayerClass);
+            expect(firstLayer).to.be.an.instanceof(Layer);
             expect(firstLayer.id).to.exist;
             expect(firstLayer.id).to.equal(layer.id);
         });
@@ -36,7 +31,7 @@ describe('Layers API', function () {
 
         var layer;
         before(function () {
-            layer = Layer.create(ctx);
+            layer = new Layer();
         });
 
         it('should generate a valid id', function () {
@@ -49,11 +44,13 @@ describe('Layers API', function () {
     describe('#moveToBottom', function () {
 
         it('should move a layer to the bottom', function () {
+
             Layer.deleteAll();
-            var layer1 = Layer.create(ctx);
-            var layer2 = Layer.create(ctx);
-            var layer3 = Layer.create(ctx);
-            var layer4 = Layer.create(ctx);
+
+            var layer1 = new Layer();
+            var layer2 = new Layer();
+            var layer3 = new Layer();
+            var layer4 = new Layer();
 
             // console.log('Layer 1', Layer.layerMap);
             expect(Layer.getLayerByIndex(0).id).to.equal(layer1.id);
@@ -68,11 +65,13 @@ describe('Layers API', function () {
     describe('#moveToTop', function () {
 
         it('should move a layer to the top', function () {
+
             Layer.deleteAll();
-            var layer1 = Layer.create(ctx);
-            var layer2 = Layer.create(ctx);
-            var layer3 = Layer.create(ctx);
-            var layer4 = Layer.create(ctx);
+
+            var layer1 = new Layer();
+            var layer2 = new Layer();
+            var layer3 = new Layer();
+            var layer4 = new Layer();
 
             expect(Layer.getLayerByIndex(0).id).to.equal(layer1.id);
 
@@ -84,11 +83,13 @@ describe('Layers API', function () {
 
     describe('#moveToIndex', function () {
         it('should move a layer to a specified index', function () {
+
             Layer.deleteAll();
-            var layer1 = Layer.create(ctx);
-            var layer2 = Layer.create(ctx);
-            var layer3 = Layer.create(ctx);
-            var layer4 = Layer.create(ctx);
+
+            var layer1 = new Layer();
+            var layer2 = new Layer();
+            var layer3 = new Layer();
+            var layer4 = new Layer();
 
             expect(Layer.getLayerByIndex(0).id).to.equal(layer1.id);
 
@@ -105,9 +106,10 @@ describe('Layers API', function () {
     describe('Layer Animations', function () {
 
         it('should stop current object animations on demand', function (done) {
+
             Layer.deleteAll();
 
-            var layer = Layer.create(ctx);
+            var layer = new Layer();
             var shape = new Shape();
 
             layer.addObject(shape);
@@ -135,7 +137,7 @@ describe('Layers API', function () {
 
             Layer.deleteAll();
 
-            var layer = Layer.create(ctx);
+            var layer = new Layer();
             var shape = new Shape();
 
             expect(shape.x).to.equal(0);
@@ -176,7 +178,8 @@ describe('Layers API', function () {
 
             var fps = 60;
             setInterval(function () {
-                layer.draw(fps);
+                // We don't need a canvas, so pass null
+                layer.draw(null, fps);
             }, 1000/fps);
         });
     });
