@@ -30,4 +30,75 @@ describe('Shape object', function () {
             expect(shape.x).to.equal(10);
         });
     });
+
+    describe('Animations', function () {
+
+        it('should stop current object animations on demand', function (done) {
+
+            var shape = new Shape();
+
+            shape.animate({
+                'props': {
+                    'y': 100
+                },
+                'duration': 800,
+                'onComplete': function () {
+                    // this shouldn't be called
+                    expect(true).to.equal(false);
+                }
+            });
+
+            shape.stop();
+
+            setTimeout(function () {
+                expect(shape.y).to.equal(0);
+                done();
+            }, 1000);
+        });
+
+        it('should animate queued properties accordingly', function (done) {
+
+            var shape = new Shape();
+
+            expect(shape.x).to.equal(0);
+
+            shape.animate({
+                'props': {
+                    'y': 100
+                },
+                'duration': 800,
+                'onComplete': function () {
+                    expect(shape.y).to.equal(100);
+                }
+            });
+
+            shape.animate({
+                'props': {
+                    'x': 1000
+                },
+                'duration': 500,
+                'easing': 'easeInOutQuad',
+                'onComplete': function() {
+                    expect(shape.x).to.equal(1000);
+                    shape.animate({
+                        'props': {
+                            'opacity': 0
+                        },
+                        'duration': 360,
+                        'easing': 'easeOutQuart',
+                        'onComplete': function () {
+                            expect(shape.opacity).to.equal(0);
+                            done();
+                        }
+                    });
+                }
+            });
+
+            var fps = 60;
+            setInterval(function () {
+                // We don't need a canvas, so pass null
+                shape.draw(null, fps);
+            }, 1000/fps);
+        });
+    });
 });
