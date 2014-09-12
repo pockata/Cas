@@ -5,10 +5,15 @@ var Layer  = require('../lib/layer');
 
 describe('Shape object', function () {
 
-    var shape = new Shape({
-        'x': 10,
-        'newProp': false
-    });
+    var shape;
+
+    before(function () {
+
+        shape = new Shape({
+            'x': 10,
+            'newProp': false
+        });
+    })
 
     describe('#constructor', function () {
 
