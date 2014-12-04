@@ -5,7 +5,7 @@ var expect = require('chai').expect;
 var Shape  = require('../lib/shape');
 var Img    = require('../lib/shapes/image');
 
-describe.only('Image shape', function () {
+describe('Image shape', function () {
 
     var image;
 
@@ -17,15 +17,11 @@ describe.only('Image shape', function () {
             this.height = 100;
         }
 
-        var imgParams = {
-            'x': 100, 'y': 200
-        };
-
-        var imgOptions = {
+        image = new Img({
+            'x': 100,
+            'y': 200,
             'imageObject': imageStub
-        };
-
-        image = new Img(imgParams, imgOptions);
+        });
     });
 
     describe('#constructor', function () {
