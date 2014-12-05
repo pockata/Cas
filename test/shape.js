@@ -1,4 +1,6 @@
-/* global describe, it */
+/* global describe, it, before */
+/* jshint expr: true */
+
 var expect = require('chai').expect;
 var Shape  = require('../lib/shape');
 var Layer  = require('../lib/layer');
@@ -13,7 +15,7 @@ describe('Shape object', function () {
             'x': 10,
             'newProp': false
         });
-    })
+    });
 
     describe('#constructor', function () {
 

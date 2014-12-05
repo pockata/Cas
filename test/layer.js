@@ -1,7 +1,7 @@
 /* global describe, it, before */
+/* jshint expr: true */
 
 var expect = require('chai').expect;
-var Shape  = require('../lib/shape');
 var Layer  = require('../lib/layer');
 
 
@@ -52,11 +52,13 @@ describe('Layers API', function () {
             var layer3 = new Layer();
             var layer4 = new Layer();
 
-            // console.log('Layer 1', Layer.layerMap);
+            // redundant, for jshint
+            layer2.show();
+            layer3.show();
+
             expect(Layer.getLayerByIndex(0).id).to.equal(layer1.id);
 
             layer4.moveToBottom();
-            // console.log('Layer 2', Layer.layerMap);
 
             expect(Layer.getLayerByIndex(0).id).to.equal(layer4.id);
         });
@@ -72,6 +74,11 @@ describe('Layers API', function () {
             var layer2 = new Layer();
             var layer3 = new Layer();
             var layer4 = new Layer();
+
+            // redundant, for jshint
+            layer2.show();
+            layer3.show();
+            layer4.show();
 
             expect(Layer.getLayerByIndex(0).id).to.equal(layer1.id);
 
@@ -90,6 +97,11 @@ describe('Layers API', function () {
             var layer2 = new Layer();
             var layer3 = new Layer();
             var layer4 = new Layer();
+
+            // redundant, for jshint
+            layer2.show();
+            layer3.show();
+            layer4.show();
 
             expect(Layer.getLayerByIndex(0).id).to.equal(layer1.id);
 

@@ -1,4 +1,6 @@
-/* global describe, it */
+/* global describe, it, before */
+/* jshint expr: true */
+
 var expect = require('chai').expect;
 var Shape  = require('../lib/shape');
 var Rect   = require('../lib/shapes/rect');

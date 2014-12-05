@@ -20,8 +20,12 @@
   ],
   "author": "Rosen Stoyanov <me@pockata.org> (http://pockata.org/)",
   "license": "MIT",
-  "dependencies": {},
+  "dependencies": {
+    "q": "^1.0.1",
+    "request": "^2.47.0"
+  },
   "devDependencies": {
+    "buffer-equal": "0.0.1",
     "chai": "^1.9.1",
     "mocha": "^1.21.4"
   }
