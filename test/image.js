@@ -10,6 +10,7 @@ var Img    = require('../lib/shapes/image');
 describe('Image shape', function () {
 
     var image;
+    var testImage = 'R0lGODlhEwALAKECAAAAABISEv///////yH5BAEKAAIALAAAAAATAAsAAAIdDI6pZ+suQJyy0ocV3bbm33EcCArmiUYk1qxAUAAAOw==';
 
     before(function () {
 
@@ -43,7 +44,6 @@ describe('Image shape', function () {
         var fName = '/tmp/test.png';
 
         before(function (done) {
-            var testImage = 'R0lGODlhEwALAKECAAAAABISEv///////yH5BAEKAAIALAAAAAATAAsAAAIdDI6pZ+suQJyy0ocV3bbm33EcCArmiUYk1qxAUAAAOw==';
             fs.writeFile(fName, testImage, 'base64', done);
         });
 
@@ -66,6 +66,20 @@ describe('Image shape', function () {
                         done(new Error('Image sources don\'t match'));
                     }
                 });
+            });
+        });
+
+        it('should set object width/height props based on image dimensions', function (done) {
+            var loader = image.load(fName);
+            loader.fail(done);
+
+            loader.then(function () {
+                if (image.width === image.Image.width && image.height === image.Image.height) {
+                    done();
+                }
+                else {
+                    done('Image/Object dimensions mismatch');
+                }
             });
         });
     });
