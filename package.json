@@ -1,10 +1,14 @@
 {
-  "name": "Cas",
+  "name": "canvas-simplified",
   "version": "0.1.0",
-  "description": "CAnvas Simplified - A toolkit to help HTML5 canvas app development",
+  "description": "CAnvas Simplified - HTML5 Canvas abstraction layer",
   "main": "index.js",
   "scripts": {
     "test": "mocha"
+  },
+  "repository": {
+      "type": "git",
+      "url": "git://github.com/pockata/Cas.git"
   },
   "keywords": [
     "cas",
